@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Cutie Pie</title>
+    <style>
+        :root {
+            --primary-pink: #ffb7c5;
+            --dark-pink: #ff4d6d;
+            --soft-white: #fffafa;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 500px;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 1px solid #ffeef1;
+        }
+
+        /* Section Styling */
+        .section { display: none; animation: fadeIn 2s ease-in-out; }
+        .active { display: block; }
+
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(20px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+
+        /* Gift Box with Heartbeat Effect */
+        .gift-box { 
+            font-size: 80px; 
+            cursor: pointer; 
+            display: inline-block;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* Photo Gallery */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin: 25px 0;
+        }
+        .photo-grid img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 2px solid var(--primary-pink);
+            transition: transform 0.3s;
+        }
+        .photo-grid img:hover { transform: scale(1.05); }
+
+        /* Buttons */
+        button {
+            background-color: var(--dark-pink);
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.3);
+        }
+
+        .note {
+            font-style: italic;
+            color: #444;
+            line-height: 1.8;
+            background: #fff5f7;
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 4px solid var(--dark-pink);
+            text-align: left;
+        }
+
+        h2 { color: var(--dark-pink); font-size: 1.5rem; }
+        p { color: #666; }
+    </style>
+</head>
+<body>
+
+    <audio id="bgMusic" loop>
+        <source src="https://www.mboxdrive.com/A%20Thousand%20Years%20Piano.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="container">
+        
+        <div id="sec1" class="section active">
+            <h2>For someone special...</h2>
+            <div class="gift-box" onclick="nextSection(1, 2)">🎁</div>
+            <p>I have something to say. <br> Tap the gift to open.</p>
+        </div>
+
+        <div id="sec2" class="section">
+            <h2>I am really sorry, Cutie Pie 🥺</h2>
+            <p>Looking at these photos makes me realize <br> how much I miss your smile.</p>
+            
+            <div class="photo-grid">
+                <img src="https://i.ibb.co/nNhqmLQp/Whats-App-Image-2026-01-17-at-10-13-56-PM.jpg" alt="Photo 1">
+                <img src="https://i.ibb.co/27xVssty/Whats-App-Image-2026-01-17-at-10-13-57-PM.jpg" alt="Photo 2">
+                <img src="https://i.ibb.co/B2BxwY9C/Whats-App-Image-2026-01-17-at-10-13-55-PM.jpg" alt="Photo 3">
+            </div>
+
+            <button onclick="nextSection(2, 3)">Read my heart ✍️</button>
+        </div>
+
+        <div id="sec3" class="section">
+            <h2>My Promise to You</h2>
+            <div class="note">
+                "I hate that I upset you. You are the reason behind my smiles, and seeing you sad because of me breaks my heart. <br><br>
+                Please forgive me. From this moment on, I promise to try my absolute best to make you happy every single day. You are the most important person to me, and I never want to lose what we have."
+            </div>
+            <h3 style="color: var(--dark-pink); margin-top: 25px;">❤️ I'll make you happy, always. ❤️</h3>
+        </div>
+
+    </div>
+
+    <script>
+        function nextSection(current, next) {
+            // Start the emotional music when the first interaction happens
+            const music = document.getElementById('bgMusic');
+            if (current === 1) {
+                music.play().catch(error => console.log("Music play blocked by browser."));
+            }
+
+            // Move to the next section
+            document.getElementById('sec' + current).classList.remove('active');
+            document.getElementById('sec' + next).classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
